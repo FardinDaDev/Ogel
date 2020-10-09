@@ -11,4 +11,3 @@ Produce a page to report the machine statuses of the last 24 hours in the databa
 
 import express from "express";
 import mysql from "mysql";
-
