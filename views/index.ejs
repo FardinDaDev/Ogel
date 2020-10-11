@@ -5,14 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Machine Statuses</title>
-    <link rel="stylesheet" href="../static/css/style.css"> 
-    <link rel="stylesheet" href="../static/css/bulma.min.css">
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/bulma.min.css" />
+    <link rel="shortcut icon" href="#" />
+
+    <script src="../static/js/Chart.min.js"></script>
 </head>
 
 <body>
+    <!-- 01-01-2018 chart (last 24 hours) -->
+    <div class="container">
+        <h1 class="title is-3">Report Status</h1>
+        <p class="subtitle">The Total Net Production: </p>
+        <p class="subtitle">The percentage of scrap vs gross production: </p>
+        <p class="subtitle">The percentage of downtime for a machine: </p>
 
-    
+        <canvas id="machineStatusChart" width="200" height="200"></canvas>
+    </div>
 
+    <script src="../static/js/script.js"></script>
 </body>
 
 </html>
