@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import async from "async";
 import { netProductionHourly, totalDownTime, scrapvsgrossPercentage, lastRun, temperature } from "../models/ogeldb.model";
 
-export const index = async (_req: Request, res: Response): Promise<void> => {
+export const index = (_req: Request, res: Response) => {
     try {
 
         //Bad practice spaghetti callback chain
