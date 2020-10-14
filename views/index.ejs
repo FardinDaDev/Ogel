@@ -8,20 +8,211 @@
     <link rel="stylesheet" href="../static/css/style.css" />
     <link rel="stylesheet" href="../static/css/bulma.min.css" />
     <link rel="shortcut icon" href="#" />
-
-    <script src="../static/js/Chart.min.js"></script>
 </head>
 
 <body>
-    <!-- 01-01-2018 chart (last 24 hours) -->
-    <div class="container">
-        <h1 class="title is-3">Report Status</h1>
-        <p class="subtitle">The Total Net Production: </p>
-        <p class="subtitle">The percentage of scrap vs gross production: </p>
-        <p class="subtitle">The percentage of downtime for a machine: </p>
+    <!-- 07-01-2018 chart (last 24 hours) -->
 
-        <canvas id="machineStatusChart" width="200" height="200"></canvas>
-    </div>
+    <section id="2x2brick" class="section hero is-small">
+        <h1 class="title is-3 has-text-centered">Machine Statuses Dashboard</h1>
+        <div class="has-text-centered">
+
+            <div class="container has-text-centered" style="border-style: solid;">
+                <h1 class="title is-3">2x2 brick mould</h1>
+                <h1 class="title is-3">Report Status</h1>
+                <p class="subtitle">Total Net Production: <%= scrapvsgross2x2[0].NET_PRODUCTION %> </p>
+                <p class="subtitle">% of scrap vs gross production: <%= scrapvsgross2x2[0].percentage %></p>
+                <p class="subtitle">% of downtime for a machine:
+                    <% let totalDowntime2x2 = lastRun2x2[0].minutes + totalDownTime2x2[0].difference %>
+
+                    <% let percentageDowntime2x2 = (totalDowntime2x2 / 1440) * 100 %>
+                    <%= percentageDowntime2x2.toFixed(3) %>
+                </p>
+                <p class="subtitle">Status:
+
+                    <script>let status2x2 = document.getElementById("2x2brick").classList.add("is-success");</script>
+                    <% let counter2x2 = 0; %>
+                    <% let status2x2 = "good" %>
+                    
+                    <% temperature2x2.forEach(function(temperature) { %>
+                        <% if ((temperature.value > 100) || (temperature.value > 85 && counter2x2 > 3)) { %>
+                            <% status2x2 = "fatal" %>
+                        <script>status2x2 = document.getElementById("2x2brick").classList.add("is-danger");</script>
+                        <% } else if (temperature.value > 85) { %>
+                            <% counter2x2 += 1; %>
+                        <% } else { %>
+                            <% counter2x2 = 0; %>
+                        <% } %>
+
+                        <% if(counter2x2 > 3 && status2x2 == "good") { %>
+                            <% status2x2 = "warning" %>
+                            <script>status2x2 = document.getElementById("2x2brick").classList.add("is-warning");</script>
+                        <% } %>
+
+                    <% }); %>
+
+                    <%= status2x2 %>
+
+
+                </p>
+
+                <div class="wrapper">
+                    <table class="table is-bordered is-narrow has-text-centered" style="overflow-x: auto;">
+                        <thead>
+                            <tr>
+                                <% for (let i = 0; i < netProduction2x2.length; i++) {  %>
+                                <th>
+                                    <%= `H${i}` %>
+                                </th>
+                                <% } %>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <% for (let i = 0; i < netProduction2x2.length; i++) { %>
+                                <td>
+                                    <%= netProduction2x2[i].PRODUCTION %>
+                                </td>
+                                <% } %>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- color of section = status -->
+
+    <section id = "3x2brick" class="section hero is-small">
+        <div class="container has-text-centered" style="border-style: solid;">
+            <h1 class="title is-3">3x2 brick mould</h1>
+            <h1 class="title is-3">Report Status</h1>
+            <p class="subtitle">Total Net Production: <%= scrapvsgross3x2[0].NET_PRODUCTION %></p>
+            <p class="subtitle">% of scrap vs gross production: <%= scrapvsgross3x2[0].percentage %></p>
+            <p class="subtitle">% of downtime for a machine:
+                <% let totalDowntime3x2 = lastRun3x2[0].minutes + totalDownTime3x2[0].difference %>
+
+                <% let percentageDowntime3x2 = (totalDowntime3x2 / 1440) * 100 %>
+                <%= percentageDowntime3x2.toFixed(3) %>
+            </p>
+            <p class="subtitle">Status: 
+                <script>let status3x2 = document.getElementById("3x2brick").classList.add("is-success");</script>
+                <% let counter3x2 = 0; %>
+                <% let status3x2 = "good" %>
+
+                <% temperature3x2.forEach(function(temperature) { %>
+                    <% if ((temperature.value > 100) || (temperature.value > 85 && counter3x2 > 3)) { %>
+                        <% status3x2 = "fatal" %>
+                    <script>status3x2 = document.getElementById("3x2brick").classList.add("is-danger");</script>
+                    <% } else if (temperature.value > 85) { %>
+                        <% counter3x2 += 1; %>
+                    <% } else { %>
+                        <% counter3x2 = 0; %>
+                    <% } %>
+
+                    <% if(counter3x2 > 3 && status3x2 == "good") { %>
+                        <% status3x2 = "warning" %>
+                        <script>status3x2 = document.getElementById("3x2brick").classList.add("is-warning");</script>
+                    <% } %>
+
+                <% }); %>
+
+                <%= status3x2 %>
+            </p>
+
+            <div class="wrapper">
+                <table class="table is-bordered is-narrow has-text-centered">
+                    <thead>
+                        <tr>
+                            <% for (let i = 0; i < netProduction3x2.length; i++) {  %>
+                            <th>
+                                <%= `H${i}` %>
+                            </th>
+                            <% } %>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <% for (let i = 0; i < netProduction3x2.length; i++) { %>
+                            <td>
+                                <%= netProduction3x2[i].PRODUCTION %>
+                            </td>
+                            <% } %>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="4x2brick" class="section hero is-small">
+        <div class="has-text-centered">
+            <div class="container has-text-centered" style="border-style: solid;">
+                <h1 class="title is-3">4x2 brick mould</h1>
+                <h1 class="title is-3">Report Status</h1>
+                <p class="subtitle">Total Net Production: <%= scrapvsgross4x2[0].NET_PRODUCTION %></p>
+                <p class="subtitle">% of scrap vs gross production: <%= scrapvsgross4x2[0].percentage %></p>
+                <p class="subtitle">% of downtime for a machine:
+                    <% let totalDowntime4x2 = lastRun4x2[0].minutes + totalDownTime4x2[0].difference %>
+
+                    <% let percentageDowntime4x2 = (totalDowntime4x2 / 1440) * 100 %>
+                    <%= percentageDowntime4x2.toFixed(3) %>
+                </p>
+                <p class="subtitle">Status:    
+                    <script>let status4x2 = document.getElementById("4x2brick").classList.add("is-success");</script>
+                    <% let counter4x2 = 0; %>
+                    <% let status4x2 = "good" %>
+
+                    <%= status4x2 %>
+                    
+                    <% temperature4x2.forEach(function(temperature) { %>
+                        <% if ((temperature.value > 100) || (temperature.value > 85 && counter4x2 > 3)) { %>
+                            <%= status4x2 = "fatal" %>
+                        <script>status4x2 = document.getElementById("4x2brick").classList.add("is-danger");</script>
+                        <% } else if (temperature.value > 85) { %>
+                            <% counter4x2 += 1; %>
+                        <% } else { %>
+                            <% counter4x2 = 0; %>
+                        <% } %>
+    
+                        <% if(counter4x2 > 3 && status4x2 == "good") { %>
+                            <%= status4x2 = "warning" %>
+                            <script>status4x2 = document.getElementById("4x2brick").classList.add("is-warning");</script>
+                        <% } %>
+
+                    <% }); %>
+                </p>
+
+                <div class="wrapper">
+                    <table class="table is-bordered is-narrow has-text-centered" style="overflow-x: auto;">
+                        <thead>
+                            <tr>
+                                <% for (let i = 0; i < netProduction4x2.length; i++) {  %>
+                                <th>
+                                    <%= `H${i}` %>
+                                </th>
+                                <% } %>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <% for (let i = 0; i < netProduction4x2.length; i++) { %>
+                                <td>
+                                    <%= netProduction4x2[i].PRODUCTION %>
+                                </td>
+                                <% } %>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <script src="../static/js/script.js"></script>
 </body>

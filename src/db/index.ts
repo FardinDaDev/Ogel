@@ -5,7 +5,7 @@ const connection = mysql.createConnection({
     host: config.database.host,
     user: config.database.user,
     password: config.database.password,
-    database: config.database.dbname
+    database: config.database.dbname,
 });
 
 connection.connect((err) => {
@@ -16,17 +16,4 @@ connection.connect((err) => {
     console.log(`Connected as id ${connection.threadId}`);
 });
 
-let ogeldb: any = {};
-
-ogeldb.all = () => {
-    return new Promise((resolve, reject) => {
-        connection.query("SELECT * FROM Production", (err, results) => {
-            if (err) {
-                return reject(err);
-            }
-            return resolve(results);
-        });
-    });
-}
-
-export = ogeldb;
+export = connection;
