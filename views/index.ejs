@@ -33,27 +33,35 @@
                     <script>let status2x2 = document.getElementById("2x2brick").classList.add("is-success");</script>
                     <% let counter2x2 = 0; %>
                     <% let status2x2 = "good" %>
-                    
-                    <% temperature2x2.forEach(function(temperature) { %>
-                        <% if ((temperature.value > 100) || (temperature.value > 85 && counter2x2 > 3)) { %>
-                            <% status2x2 = "fatal" %>
-                        <script>status2x2 = document.getElementById("2x2brick").classList.add("is-danger");</script>
-                        <% } else if (temperature.value > 85) { %>
-                            <% counter2x2 += 1; %>
-                        <% } else { %>
-                            <% counter2x2 = 0; %>
-                        <% } %>
 
-                        <% if(counter2x2 > 3 && status2x2 == "good") { %>
-                            <% status2x2 = "warning" %>
-                            <script>status2x2 = document.getElementById("2x2brick").classList.add("is-warning");</script>
-                        <% } %>
+                    <% temperature2x2.forEach(function(temperature) { %>
+                    <% if ((temperature.value > 100) || (temperature.value > 85 && counter2x2 > 3)) { %>
+                    <% status2x2 = "fatal" %>
+                    <script>status2x2 = document.getElementById("2x2brick").classList.add("is-danger");</script>
+                    <% } else if (temperature.value > 85) { %>
+                    <% counter2x2 += 1; %>
+                    <% } else { %>
+                    <% counter2x2 = 0; %>
+                    <% } %>
+
+                    <% if(counter2x2 > 3 && status2x2 == "good") { %>
+                    <% status2x2 = "warning" %>
+                    <script>status2x2 = document.getElementById("2x2brick").classList.add("is-warning");</script>
+                    <% } %>
 
                     <% }); %>
 
                     <%= status2x2 %>
 
 
+                </p>
+
+                <p class="subtitle">OEE:
+                    <% let performance2x2 = scrapvsgross2x2[0].NET_PRODUCTION / 720000 * 100; %>
+                    <% let availability2x2 = (1440 - totalDownTime2x2[0].runtimeDifference) / 1080; %>
+                    <% let quality2x2 = scrapvsgross2x2[0].NET_PRODUCTION / scrapvsgross2x2[0].grossProduction * 100; %>
+
+                    <%= ((performance2x2 * availability2x2 * qualityx2) / 100).toFixed(3) %>
                 </p>
 
                 <div class="wrapper">
@@ -86,7 +94,7 @@
 
     <!-- color of section = status -->
 
-    <section id = "3x2brick" class="section hero is-small">
+    <section id="3x2brick" class="section hero is-small">
         <div class="container has-text-centered" style="border-style: solid;">
             <h1 class="title is-3">3x2 brick mould</h1>
             <h1 class="title is-3">Report Status</h1>
@@ -98,29 +106,37 @@
                 <% let percentageDowntime3x2 = (totalDowntime3x2 / 1440) * 100 %>
                 <%= percentageDowntime3x2.toFixed(3) %>
             </p>
-            <p class="subtitle">Status: 
+            <p class="subtitle">Status:
                 <script>let status3x2 = document.getElementById("3x2brick").classList.add("is-success");</script>
                 <% let counter3x2 = 0; %>
                 <% let status3x2 = "good" %>
 
                 <% temperature3x2.forEach(function(temperature) { %>
-                    <% if ((temperature.value > 100) || (temperature.value > 85 && counter3x2 > 3)) { %>
-                        <% status3x2 = "fatal" %>
-                    <script>status3x2 = document.getElementById("3x2brick").classList.add("is-danger");</script>
-                    <% } else if (temperature.value > 85) { %>
-                        <% counter3x2 += 1; %>
-                    <% } else { %>
-                        <% counter3x2 = 0; %>
-                    <% } %>
+                <% if ((temperature.value > 100) || (temperature.value > 85 && counter3x2 > 3)) { %>
+                <% status3x2 = "fatal" %>
+                <script>status3x2 = document.getElementById("3x2brick").classList.add("is-danger");</script>
+                <% } else if (temperature.value > 85) { %>
+                <% counter3x2 += 1; %>
+                <% } else { %>
+                <% counter3x2 = 0; %>
+                <% } %>
 
-                    <% if(counter3x2 > 3 && status3x2 == "good") { %>
-                        <% status3x2 = "warning" %>
-                        <script>status3x2 = document.getElementById("3x2brick").classList.add("is-warning");</script>
-                    <% } %>
+                <% if(counter3x2 > 3 && status3x2 == "good") { %>
+                <% status3x2 = "warning" %>
+                <script>status3x2 = document.getElementById("3x2brick").classList.add("is-warning");</script>
+                <% } %>
 
                 <% }); %>
 
                 <%= status3x2 %>
+            </p>
+
+            <p class="subtitle">OEE:
+                <% let performance3x2 = scrapvsgross3x2[0].NET_PRODUCTION / 720000 * 100; %>
+                <% let availability3x2 = (1440 - totalDownTime3x2[0].runtimeDifference) / 1080; %>
+                <% let quality3x2 = scrapvsgross3x2[0].NET_PRODUCTION / scrapvsgross3x2[0].grossProduction * 100; %>
+
+                <%= ((performance3x2 * availability3x2 * quality3x2) / 100).toFixed(3) %>
             </p>
 
             <div class="wrapper">
@@ -162,29 +178,37 @@
                     <% let percentageDowntime4x2 = (totalDowntime4x2 / 1440) * 100 %>
                     <%= percentageDowntime4x2.toFixed(3) %>
                 </p>
-                <p class="subtitle">Status:    
+                <p class="subtitle">Status:
                     <script>let status4x2 = document.getElementById("4x2brick").classList.add("is-success");</script>
                     <% let counter4x2 = 0; %>
                     <% let status4x2 = "good" %>
 
                     <%= status4x2 %>
-                    
+
                     <% temperature4x2.forEach(function(temperature) { %>
-                        <% if ((temperature.value > 100) || (temperature.value > 85 && counter4x2 > 3)) { %>
-                            <%= status4x2 = "fatal" %>
-                        <script>status4x2 = document.getElementById("4x2brick").classList.add("is-danger");</script>
-                        <% } else if (temperature.value > 85) { %>
-                            <% counter4x2 += 1; %>
-                        <% } else { %>
-                            <% counter4x2 = 0; %>
-                        <% } %>
-    
-                        <% if(counter4x2 > 3 && status4x2 == "good") { %>
-                            <%= status4x2 = "warning" %>
-                            <script>status4x2 = document.getElementById("4x2brick").classList.add("is-warning");</script>
-                        <% } %>
+                    <% if ((temperature.value > 100) || (temperature.value > 85 && counter4x2 > 3)) { %>
+                    <%= status4x2 = "fatal" %>
+                    <script>status4x2 = document.getElementById("4x2brick").classList.add("is-danger");</script>
+                    <% } else if (temperature.value > 85) { %>
+                    <% counter4x2 += 1; %>
+                    <% } else { %>
+                    <% counter4x2 = 0; %>
+                    <% } %>
+
+                    <% if(counter4x2 > 3 && status4x2 == "good") { %>
+                    <%= status4x2 = "warning" %>
+                    <script>status4x2 = document.getElementById("4x2brick").classList.add("is-warning");</script>
+                    <% } %>
 
                     <% }); %>
+                </p>
+
+                <p class="subtitle">OEE:
+                    <% let performance4x2 = scrapvsgross4x2[0].NET_PRODUCTION / 720000 * 100; %>
+                    <% let availability4x2 = (1440 - totalDownTime4x2[0].runtimeDifference) / 1080; %>
+                    <% let quality4x2 = scrapvsgross4x2[0].NET_PRODUCTION / scrapvsgross4x2[0].grossProduction * 100; %>
+
+                    <%= ((performance4x2 * availability4x2 * quality4x2) / 100).toFixed(3) %>
                 </p>
 
                 <div class="wrapper">
