@@ -7,7 +7,7 @@ export function netProductionHourly(machineName: string, callback: any) {
 };
 
 export function totalDownTime(machineName: string, callback: any) {
-    connection.query("SELECT SUM(TIMESTAMPDIFF (MINUTE, (SELECT y.datetime FROM Runtime y WHERE y.id < x.id AND machine_name = ? AND (DATETIME BETWEEN '2018-01-07 00:00:00' AND '2018-01-07 23:55:00') ORDER BY id DESC LIMIT 1), x.datetime)) AS difference FROM Runtime x WHERE machine_name = ? AND (DATETIME BETWEEN '2018-01-07 00:00:00' AND '2018-01-08 00:00:00') AND isrunning = 1 ORDER BY x.id", [machineName, machineName], (err, results) => {
+    connection.query("SELECT SUM(TIMESTAMPDIFF (MINUTE, (SELECT y.datetime FROM Runtime y WHERE y.id < x.id AND machine_name = ? AND (DATETIME BETWEEN '2018-01-07 00:00:00' AND '2018-01-07 23:55:00') ORDER BY id DESC LIMIT 1), x.datetime)) AS runtimeDifference FROM Runtime x WHERE machine_name = ? AND (DATETIME BETWEEN '2018-01-07 00:00:00' AND '2018-01-08 00:00:00') AND isrunning = 1 ORDER BY x.id", [machineName, machineName], (err, results) => {
         callback(err, results);
     });
 }

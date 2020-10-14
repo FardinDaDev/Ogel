@@ -23,7 +23,7 @@
                 <p class="subtitle">Total Net Production: <%= scrapvsgross2x2[0].NET_PRODUCTION %> </p>
                 <p class="subtitle">% of scrap vs gross production: <%= scrapvsgross2x2[0].percentage %></p>
                 <p class="subtitle">% of downtime for a machine:
-                    <% let totalDowntime2x2 = lastRun2x2[0].minutes + totalDownTime2x2[0].difference %>
+                    <% let totalDowntime2x2 = lastRun2x2[0].minutes + totalDownTime2x2[0].runtimeDifference %>
 
                     <% let percentageDowntime2x2 = (totalDowntime2x2 / 1440) * 100 %>
                     <%= percentageDowntime2x2.toFixed(3) %>
@@ -93,7 +93,7 @@
             <p class="subtitle">Total Net Production: <%= scrapvsgross3x2[0].NET_PRODUCTION %></p>
             <p class="subtitle">% of scrap vs gross production: <%= scrapvsgross3x2[0].percentage %></p>
             <p class="subtitle">% of downtime for a machine:
-                <% let totalDowntime3x2 = lastRun3x2[0].minutes + totalDownTime3x2[0].difference %>
+                <% let totalDowntime3x2 = lastRun3x2[0].minutes + totalDownTime3x2[0].runtimeDifference %>
 
                 <% let percentageDowntime3x2 = (totalDowntime3x2 / 1440) * 100 %>
                 <%= percentageDowntime3x2.toFixed(3) %>
@@ -157,7 +157,7 @@
                 <p class="subtitle">Total Net Production: <%= scrapvsgross4x2[0].NET_PRODUCTION %></p>
                 <p class="subtitle">% of scrap vs gross production: <%= scrapvsgross4x2[0].percentage %></p>
                 <p class="subtitle">% of downtime for a machine:
-                    <% let totalDowntime4x2 = lastRun4x2[0].minutes + totalDownTime4x2[0].difference %>
+                    <% let totalDowntime4x2 = lastRun4x2[0].minutes + totalDownTime4x2[0].runtimeDifference %>
 
                     <% let percentageDowntime4x2 = (totalDowntime4x2 / 1440) * 100 %>
                     <%= percentageDowntime4x2.toFixed(3) %>
