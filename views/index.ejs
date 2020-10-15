@@ -61,7 +61,7 @@
                     <% let availability2x2 = (1440 - totalDownTime2x2[0].runtimeDifference) / 1080; %>
                     <% let quality2x2 = scrapvsgross2x2[0].NET_PRODUCTION / scrapvsgross2x2[0].grossProduction * 100; %>
 
-                    <%= ((performance2x2 * availability2x2 * qualityx2) / 100).toFixed(3) %>
+                    <%= ((performance2x2 * availability2x2 * quality2x2) / 100).toFixed(3) %>
                 </p>
 
                 <div class="wrapper">
